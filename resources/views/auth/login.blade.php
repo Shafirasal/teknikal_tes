@@ -48,7 +48,7 @@
         <div class="card card-outline card-primary">
         <div class="card-header text-center">
             <!-- Logo image above the title -->
-            <img src="{{ asset('assets/logo.png') }}" alt="Logo" style="width: 100px; height: auto; margin-bottom: 10px;">
+            <img src="{{ asset('assets/logo.jpg') }}" alt="Logo" style="width: 100px; height: auto; margin-bottom: 10px;">
             <a href="{{ url('/') }}" class="h1" style="color: #EF5428;"><b>RENTHICLE</b></a>
         </div>
 
