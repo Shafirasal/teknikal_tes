@@ -1,6 +1,3 @@
-@php
-    $activeMenu = $activeMenu ?? '';
-@endphp
 
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
@@ -37,7 +34,7 @@
             </li>
             <!-- Untuk Admin -->
             {{-- @if(Auth::user()->id_level == 1) --}}
-            @if(auth()->check() && auth()->user()->id_level == 1)
+
                 <li class="nav-header">Data Pengguna</li>
                 <li class="nav-item">
                     <a href="{{ url('/level') }}" class="nav-link {{ $activeMenu == 'level' ? 'active' : '' }}">
@@ -51,7 +48,7 @@
                         <p>Data Pengguna</p>
                     </a>
                 </li>
-@endif
+
                 <li class="nav-header">Mengelola Peminjaman</li>
                 <li class="nav-item">
                     <a href="{{ url('/peminjaman') }}" class="nav-link {{ $activeMenu == 'peminjaman' ? 'active' : '' }}">
@@ -77,7 +74,7 @@
                         <p>jeniskendaraan</p>
                     </a>
                 </li>
-                {{-- @endif --}}
+
 
                 <li class="nav-header">Mengelola penerimaan</li>
                 <li class="nav-item">

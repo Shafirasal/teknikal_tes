@@ -211,62 +211,62 @@
     </script> --}}
 
     <script>
-        function modalAction(url = '') {
-            $('#myModal').load(url, function() {
-                $('#myModal').modal('show');
-            });
-        }
-    
-        var dataPeminjaman;
-        $(document).ready(function() {
-            dataPeminjaman = $('#table_peminjaman').DataTable({
-                serverSide: true,
-                ajax: {
-                    url: "{{ url('peminjaman/list') }}",
-                    type: "POST",
-                    data: {
-                        _token: "{{ csrf_token() }}"
-                    }
-                },
-                columns: [
-                    { data: "DT_RowIndex", className: "text-center", width: "4%", orderable: false, searchable: false },
-                    { data: "kendaraan.nama_kendaraan", width: "12%", orderable: true },
-                    { data: "driver", orderable: true }, // Sesuaikan dengan nama addColumn
-                    { data: "koordinator", orderable: true }, // Koordinator relasi dari users
-                    { data: "perusahaan.nama_perusahaan", width: "15%", orderable: true },
-                    { data: "tujuan_peminjaman", width: "20%", orderable: false },
-                    { data: "tanggal_peminjaman", width: "10%", orderable: true },
-                    { data: "tanggal_berakhir_peminjaman", width: "10%", orderable: true },
-                    {
-                        data: "status",
-                        render: function(data) {
-                            let badgeClass = '';
-                            let badgeText = data ? data.toLowerCase() : '';
-    
-                            // Tentukan warna berdasarkan status
-                            switch (badgeText) {
-                                case 'menunggu':
-                                    badgeClass = 'bg-warning text-dark'; // Warna kuning dengan teks hitam
-                                    break;
-                                case 'setuju':
-                                    badgeClass = 'bg-success text-white'; // Warna hijau dengan teks putih
-                                    break;
-                                case 'tolak':
-                                    badgeClass = 'bg-danger text-white'; // Warna merah dengan teks putih
-                                    break;
-                                default:
-                                    badgeClass = 'bg-secondary text-white'; // Warna abu-abu dengan teks putih
-                            }
-                            return `<span class="badge ${badgeClass}">${data}</span>`;
-                        },
-                        className: "text-center", width: "8%"
-                    },
-                    { data: "aksi", className: "text-center", width: "10%", orderable: false, searchable: false }
-                ],
-                responsive: true,
-                order: [[6, 'asc']]
-            });
+    function modalAction(url = '') {
+        $('#myModal').load(url, function() {
+            $('#myModal').modal('show');
         });
-    </script>
-    
+    }
+
+    var dataPeminjaman;
+    $(document).ready(function() {
+        dataPeminjaman = $('#table_peminjaman').DataTable({
+            serverSide: true,
+            ajax: {
+                url: "{{ url('peminjaman/list') }}",
+                type: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}"
+                }
+            },
+            columns: [
+                { data: "DT_RowIndex", className: "text-center", width: "4%", orderable: false, searchable: false },
+                { data: "kendaraan.nama_kendaraan", width: "12%", orderable: true },
+                { data: "driver", orderable: true }, // Sesuaikan dengan nama addColumn
+                { data: "koordinator", orderable: true }, // Koordinator relasi dari users
+                { data: "perusahaan.nama_perusahaan", width: "15%", orderable: true },
+                { data: "tujuan_peminjaman", width: "20%", orderable: false },
+                { data: "tanggal_peminjaman", width: "10%", orderable: true },
+                { data: "tanggal_berakhir_peminjaman", width: "10%", orderable: true },
+                {
+                    data: "status",
+                    render: function(data) {
+                        let badgeClass = '';
+                        let badgeText = data ? data.toLowerCase() : '';
+
+                        // Tentukan warna berdasarkan status
+                        switch (badgeText) {
+                            case 'menunggu':
+                                badgeClass = 'bg-warning text-dark'; // Warna kuning dengan teks hitam
+                                break;
+                            case 'setuju':
+                                badgeClass = 'bg-success text-white'; // Warna hijau dengan teks putih
+                                break;
+                            case 'tolak':
+                                badgeClass = 'bg-danger text-white'; // Warna merah dengan teks putih
+                                break;
+                            default:
+                                badgeClass = 'bg-secondary text-white'; // Warna abu-abu dengan teks putih
+                        }
+                        return `<span class="badge ${badgeClass}">${data}</span>`;
+                    },
+                    className: "text-center", width: "8%"
+                },
+                { data: "aksi", className: "text-center", width: "10%", orderable: false, searchable: false }
+            ],
+            responsive: true,
+            order: [[6, 'asc']]
+        });
+    });
+</script>
+
 @endpush

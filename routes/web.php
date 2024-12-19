@@ -15,15 +15,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 
 // Rute Auth (Opsional, jika tidak digunakan bisa dihapus)
-Route::get('login', [AuthController::class, 'login'])->name('login');
-Route::post('login', [AuthController::class, 'postlogin'])->name('login.post');
-Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+// Route::get('login', [AuthController::class, 'login'])->name('login');
+// Route::post('login', [AuthController::class, 'postlogin'])->name('login.post');
+// Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 
 
-Route::group(['middleware' => 'auth'], function () {
+
 // Level Management (tanpa login)
-Route::group(['prefix' => 'level', 'middleware' => 'authorize:ADM'], function () {
+Route::group(['prefix' => 'level'], function () {
     Route::get('/', [LevelController::class, 'index'])->name('level.index');
     Route::post('/list', [LevelController::class, 'list'])->name('level.list');
     Route::get('/create', [LevelController::class, 'create'])->name('level.create');
@@ -139,6 +139,4 @@ Route::group(['prefix' => 'penerimaan'], function () {
     Route::get('/import', [PenerimaanPeminjamanController::class, 'import'])->name('penerimaan.import');
     Route::post('/{id}/approve', [PenerimaanPeminjamanController::class, 'approve'])->name('penerimaan.approve');
     Route::post('/{id}/reject', [PenerimaanPeminjamanController::class, 'reject'])->name('penerimaan.reject');
-});
-
 });

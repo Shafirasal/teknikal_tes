@@ -7,7 +7,6 @@ use App\Models\PeminjamanModel;
 use App\Models\PerusahaanModel;
 use App\Models\UserModel;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -93,15 +92,8 @@ class PeminjamanController extends Controller
 // } 
 
 public function list(Request $request)
-
 {
-    $user = Auth::user();
-    if (!$user) {
-        return response()->json([
-            'status' => false,
-            'message' => 'User tidak terautentikasi.'
-        ], 401);
-    }
+    
     $peminjaman = PeminjamanModel::with(['driver', 'koordinator', 'kendaraan', 'perusahaan'])
         ->select('id_peminjaman', 'id_kendaraan', 'id_perusahaan', 'driver_id', 'koordinator_id', 'nama_peminjaman', 'tujuan_peminjaman', 'tanggal_peminjaman', 'tanggal_berakhir_peminjaman', 'status');
 
